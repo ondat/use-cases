@@ -26,7 +26,32 @@ Let's have a look at the parameters:
 - ```--stos-cluster-namespace storageos```: overwrite the default plugin parameters to deploy the Ondat cluster within a custom namespace
 - ```--stos-version v2.5.0-beta.1```: overwrite the default plugin parameters with the desired version
 
-**NOTE**: Do not change this two files, ```ondat-etcd.yaml``` and ```ondat-cluster.yaml```! This files have been tuned for the deployment of Ondat on google anthos k8s running on aws. 
+**NOTE**:  
+- Do not change this two files, ```ondat-etcd.yaml``` and ```ondat-cluster.yaml```! This files have been tuned for the deployment of Ondat on google anthos k8s running on aws. 
+- If customization is required, engage with the Ondat Customer Success Team.
+
+Once the installation is done, the following outcome should be expected:
+
+```shell
+kubectl get pod -n storageos 
+NAME                                                 READY   STATUS    RESTARTS   AGE
+modinstall-daemonset-89ct7                           1/1     Running   0          3m10s
+modinstall-daemonset-8x8bh                           1/1     Running   0          3m10s
+modinstall-daemonset-zp6z6                           1/1     Running   0          3m10s
+storageos-api-manager-85c7c7ff79-6qkw9               1/1     Running   0          2m20s
+storageos-api-manager-85c7c7ff79-krfww               1/1     Running   0          2m20s
+storageos-csi-helper-65dc8ff9d8-m5vm6                3/3     Running   0          2m20s
+storageos-etcd-0-42qsc                               1/1     Running   0          3m47s
+storageos-etcd-1-58r7j                               1/1     Running   0          3m47s
+storageos-etcd-2-djrpx                               1/1     Running   0          3m47s
+storageos-etcd-controller-manager-856cf69f69-pgg82   1/1     Running   0          4m7s
+storageos-etcd-proxy-64cf4f6556-sbb86                1/1     Running   0          4m5s
+storageos-node-6wxvd                                 3/3     Running   0          2m58s
+storageos-node-9jgl6                                 3/3     Running   0          2m58s
+storageos-node-g669g                                 3/3     Running   0          2m58s
+storageos-operator-56bf9d4db7-wsscz                  2/2     Running   0          4m
+storageos-scheduler-75dc6b5f56-swcm8                 1/1     Running   0          3m5s
+```
 
 ## test with a RWO volume
 
