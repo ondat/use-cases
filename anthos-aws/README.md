@@ -53,12 +53,14 @@ storageos-operator-56bf9d4db7-wsscz                  2/2     Running   0        
 storageos-scheduler-75dc6b5f56-swcm8                 1/1     Running   0          3m5s
 ```
 
-## test with a RWO volume
+## Test with a RWO volume
 This test will perform the following:
 - create a ```PersistentVolumeClaim``` 
 - create a ```Deployment``` calling for the ```PersistentVolumeCLaim``` that will attach the ```PersistentVolume``` to the defined path ```/mnt/```. 
 
 In this context, a read-write-once or rwo persitent volume is created. This volume can only be attached to one pod at a time. 
+
+**NOTE**: for an easier comparison between the RWO and RWX volume, this example use a ```Deployment``` type instead of a ```StatefulSet``` type of workload deployment. It is recommended to deploy any stateful application using a RWO volume with a ```StatefulSet``` deployment type to ensure order in operations. See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) for more details.
 
 The file ```test1-dep-rwo.yaml``` as two section; one to create a ```PersistentVolumeClaim``` using the default Ondat ```StorageClass``` and one to create a deployment for a simple debian container calling the ```PersistenVolumeClaim```.
 
@@ -114,7 +116,14 @@ To deploy, the following command has to be executed:
 kubectl apply -f test1-dep-rwo.yaml
 ```
 
-## test with a RWX volume
+To verify the status, run the following command:
+```
+kubectl get pod
+kubectl get pvc
+```
+
+
+## Test with a RWX volume
 This test will perform the following:
 - create a ```PersistentVolumeClaim``` 
 - create a ```Deployment``` calling for the ```PersistentVolumeCLaim``` that will attach the ```PersistentVolume``` to the defined path ```/mnt/```. 
@@ -174,4 +183,9 @@ spec:
 To deploy, the following command has to be executed: 
 ```
 kubectl apply -f test1-dep-rwx.yaml
+```
+To verify the status, run the following command:
+```
+kubectl get pod
+kubectl get pvc
 ```
