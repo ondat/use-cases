@@ -30,10 +30,10 @@ Let's have a look at the parameters:
 - Do not change this two files, ```ondat-etcd.yaml``` and ```ondat-cluster.yaml```! This files have been tuned for the deployment of Ondat on google anthos k8s running on aws. 
 - If customization is required, engage with the Ondat Customer Success Team.
 
-Once the installation is done, the following outcome should be expected:
+Once the installation is done, the following outcome of ```kubectl get pod -n storageos```
+ should be expected:
 
-```shell
-kubectl get pod -n storageos 
+```
 NAME                                                 READY   STATUS    RESTARTS   AGE
 modinstall-daemonset-89ct7                           1/1     Running   0          3m10s
 modinstall-daemonset-8x8bh                           1/1     Running   0          3m10s
