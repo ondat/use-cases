@@ -54,7 +54,124 @@ storageos-scheduler-75dc6b5f56-swcm8                 1/1     Running   0        
 ```
 
 ## test with a RWO volume
+This test will perform the following:
+- create a ```PersistentVolumeClaim``` 
+- create a ```Deployment``` calling for the ```PersistentVolumeCLaim``` that will attach the ```PersistentVolume``` to the defined path ```/mnt/```. 
 
+In this context, a read-write-once or rwo persitent volume is created. This volume can only be attached to one pod at a time. 
+
+The file ```test1-dep-rwo.yaml``` as two section; one to create a ```PersistentVolumeClaim``` using the default Ondat ```StorageClass``` and one to create a deployment for a simple debian container calling the ```PersistenVolumeClaim```.
+
+Here is the contain: 
+```YAML
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-rwo
+spec:
+  storageClassName: storageos
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-rwo
+  labels:
+    app: app-rwo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-rwo
+  template:
+    metadata:
+      labels:
+        app: app-rwo
+    spec:
+      containers:
+        - name: debian
+          image: debian:9-slim
+          command: ["/bin/sleep"]
+          args: [ "3600" ]
+          volumeMounts:
+            - mountPath: /mnt/
+              name: v1
+      volumes:
+        - name: v1
+          persistentVolumeClaim:
+            claimName: pvc-rwo
+```
+
+**NOTE**: the replicas count for the deployment is set to 1. This means 1 pod will be deployed accessing 1 volume. If the replicas count for the deployment is set to 3, 3 pods will be scheduled with 1 volume for each pod resulting in 3 volumes being provisioned. 
+
+To deploy, the following command has to be executed: 
+```
+kubectl apply -f test1-dep-rwo.yaml
+```
 
 ## test with a RWX volume
+This test will perform the following:
+- create a ```PersistentVolumeClaim``` 
+- create a ```Deployment``` calling for the ```PersistentVolumeCLaim``` that will attach the ```PersistentVolume``` to the defined path ```/mnt/```. 
 
+In this context, a read-write-many or rwx persitent volume is created. This volume can be attached to multiple pods at a time. 
+
+The file ```test1-dep-rwx.yaml``` as two section; one to create a ```PersistentVolumeClaim``` using the default Ondat ```StorageClass``` and one to create a deployment for a simple debian container calling the ```PersistenVolumeClaim```.
+
+Here is the contain: 
+```YAML
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-rwx
+spec:
+  storageClassName: storageos
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-rwx
+  labels:
+    app: app-rwx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-rwx
+  template:
+    metadata:
+      labels:
+        app: app-rwx
+    spec:
+      containers:
+        - name: debian
+          image: debian:9-slim
+          command: ["/bin/sleep"]
+          args: [ "3600" ]
+          volumeMounts:
+            - mountPath: /mnt/
+              name: v1
+      volumes:
+        - name: v1
+          persistentVolumeClaim:
+            claimName: pvc-rwx
+
+```
+
+**NOTE**: the replicas count for the deployment is set to 3. This means 3 pod will be deployed accessing 1 volume. If the replicas count for the deployment is set to 6, 6 pods will be scheduled still accessing the same 1 volume. This is the major difference with a rwo volume.  
+
+To deploy, the following command has to be executed: 
+```
+kubectl apply -f test1-dep-rwx.yaml
+```
