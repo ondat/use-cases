@@ -1,4 +1,4 @@
-# use-cases
+# Use Cases
 
-## google anthos on aws
-The folder ```anthos-aws``` contains the necessary YAML configuration files to install Ondat on an Anthos deployment on AWS using the ```kubectl storageos``` plugin. 
+## Google Anthos Kubernetes cluster running on AWS
+The folder ```anthos-aws``` contains the necessary how-to and YAML configuration files to install Ondat on an Anthos deployment on AWS using the ```kubectl storageos``` plugin. 
