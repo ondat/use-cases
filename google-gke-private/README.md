@@ -341,7 +341,7 @@ Using the [Ondat storageos kubectl plugin](https://docs.ondat.io/v2.5/docs/insta
 kubectl storageos install --include-etcd --etcd-namespace storageos --stos-cluster-yaml ondat-cluster.yaml --stos-version v2.5.0-beta.1 --stos-cluster-namespace storageos --stos-operator-yaml ondat-operator.yaml --etcd-cluster-yaml ondat-etcd-cluster.yaml --etcd-operator-yaml ondat-etcd-operator.yaml --skip-etcd-endpoints-validation
 ```
 
-leading the following output:
+leading the following output from the ```kubectl storageos``` plugin:
 ```
 namespace/ondat configured
 namespace/ondat configured
@@ -379,4 +379,56 @@ etcdcluster.etcd.improbable.io/storageos-etcd created
 resourcequota/storageos-critical-pods created
 secret/storageos-api created
 storageoscluster.storageos.com/storageos-cluster created
+```
+
+leading the following output from the ```kubectl get all -n storageos``` plugin:
+```
+kubectl get all -n ondat
+
+NAME                                                     READY   STATUS             RESTARTS   AGE
+pod/storageos-api-manager-7ff6d8d99-p76dm                1/1     Running            1          2m16s
+pod/storageos-api-manager-7ff6d8d99-qmth5                1/1     Running            1          2m17s
+pod/storageos-csi-helper-54fc7f4cfb-fz5l6                3/3     Running            0          2m17s
+pod/storageos-etcd-0-pzmbf                               1/1     Running            0          3m20s
+pod/storageos-etcd-1-84qqq                               1/1     Running            0          3m19s
+pod/storageos-etcd-2-j24rp                               1/1     Running            0          3m19s
+pod/storageos-etcd-controller-manager-6796fb4654-5rh6c   1/1     Running            0          3m32s
+pod/storageos-etcd-proxy-b87876c76-4htpx                 1/1     Running            0          3m32s
+pod/storageos-node-9hs6m                                 3/3     Running            0          2m53s
+pod/storageos-node-g42p7                                 3/3     Running            0          2m53s
+pod/storageos-node-sh968                                 3/3     Running            0          2m53s
+pod/storageos-operator-75c4b76794-zz5qk                  2/2     Running            0          3m32s
+pod/storageos-operator-kube-version-1637693007-7dp7s     0/1     ImagePullBackOff   0          4m43s
+pod/storageos-scheduler-85f84f79bc-9pzqn                 1/1     Running            0          2m59s
+
+NAME                                    TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)             AGE
+service/storageos                       ClusterIP   10.20.5.146   <none>        5705/TCP            2m54s
+service/storageos-api-manager-metrics   ClusterIP   10.20.1.219   <none>        8080/TCP            2m19s
+service/storageos-etcd                  ClusterIP   None          <none>        2379/TCP,2380/TCP   3m22s
+service/storageos-etcd-proxy            ClusterIP   10.20.8.37    <none>        80/TCP              3m33s
+service/storageos-operator              ClusterIP   10.20.6.117   <none>        8443/TCP            3m34s
+service/storageos-operator-webhook      ClusterIP   10.20.6.102   <none>        443/TCP             3m34s
+service/storageos-webhook               ClusterIP   10.20.13.46   <none>        443/TCP             2m18s
+
+NAME                            DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+daemonset.apps/storageos-node   3         3         3       3            3           <none>          2m55s
+
+NAME                                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/storageos-api-manager               2/2     2            2           2m18s
+deployment.apps/storageos-csi-helper                1/1     1            1           2m19s
+deployment.apps/storageos-etcd-controller-manager   1/1     1            1           3m33s
+deployment.apps/storageos-etcd-proxy                1/1     1            1           3m33s
+deployment.apps/storageos-operator                  1/1     1            1           3m33s
+deployment.apps/storageos-scheduler                 1/1     1            1           3m   
+
+NAME                                                           DESIRED   CURRENT   READY   AGE
+replicaset.apps/storageos-api-manager-7ff6d8d99                2         2         2       2m18s
+replicaset.apps/storageos-csi-helper-54fc7f4cfb                1         1         1       2m19s
+replicaset.apps/storageos-etcd-0                               1         1         1       3m21s
+replicaset.apps/storageos-etcd-1                               1         1         1       3m20s
+replicaset.apps/storageos-etcd-2                               1         1         1       3m20s
+replicaset.apps/storageos-etcd-controller-manager-6796fb4654   1         1         1       3m33s
+replicaset.apps/storageos-etcd-proxy-b87876c76                 1         1         1       3m33s
+replicaset.apps/storageos-operator-75c4b76794                  1         1         1       3m33s
+replicaset.apps/storageos-scheduler-85f84f79bc                 1         1         1       3m   
 ```
