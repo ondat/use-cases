@@ -15,7 +15,7 @@ What is included in this folder:
 On the admin host from which the Google Anthos k8s on AWS is accessible, run the following: 
 
 ```shell
-kubectl storageos install --include-etcd --etcd-cluster-yaml ondat-etcd.yaml --etcd-namespace storageos --stos-cluster-yaml ondat-cluster.yaml --stos-cluster-namespace storageos --stos-version v2.5.0-beta.1
+kubectl storageos install --include-etcd --etcd-cluster-yaml ondat-etcd.yaml --etcd-namespace storageos --stos-cluster-yaml ondat-cluster.yaml --stos-cluster-namespace storageos --stos-version v2.5.0
 ```
 
 Let's have a look at the parameters:
@@ -24,7 +24,7 @@ Let's have a look at the parameters:
 - ```--etcd-namespace storageos```: overwrite the default plugin parameters to deploy the etcd cluster within a custom namespace
 - ```--stos-cluster-yaml ondat-cluster.yaml```: overwrite the default plugin parameters with the one from this configuration file
 - ```--stos-cluster-namespace storageos```: overwrite the default plugin parameters to deploy the Ondat cluster within a custom namespace
-- ```--stos-version v2.5.0-beta.1```: overwrite the default plugin parameters with the desired version
+- ```--stos-version v2.5.0```: overwrite the default plugin parameters with the desired version
 
 **NOTE**:  
 - Do not change this two files, ```ondat-etcd.yaml``` and ```ondat-cluster.yaml```! This files have been tuned for the deployment of Ondat on google anthos k8s running on aws. 
