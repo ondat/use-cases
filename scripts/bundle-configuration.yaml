@@ -6,9 +6,9 @@ spec:
   collectors:
     - clusterResources: {}
     - logs:
-        name: storageos-cluster-operator-logs
+        name: storageos-operator-logs
         selector:
-          - name=storageos-cluster-operator
+          - name=storageos-operator
         namespace: storageos-operator
         limits:
           maxLines: 10000
