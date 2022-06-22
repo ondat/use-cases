@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<pre>$ kubectl logs jobs/fio
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                   Dload  Upload   Total   Spent    Left  Speed
+  100  7501  100  7501    0     0  77329      0 --:--:-- --:--:-- --:--:-- 77329
+  
+  Starting VolBench tests ...
+  
+  Test parameters:
+  FIO_files=/data/volbenchtest1
+  FIO_size=4GB  FIO_ramptime=1s  FIO_runtime=120s
+  
+  
+  Testing read seqential ... (size=1GB, increment=1GB, blocksize=1M, qd=4, profile=read)
+                       Test file   R iops  R lat ms   R MB/s     W iops  W lat ms   W MB/s
+             /data/volbenchtest1 <font color="#A2734C"><b>    1467</b></font> <font color="#26A269"><b>    2.723</b></font>   1467.8   <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0  
+             /data/volbenchtest1 <font color="#A2734C"><b>    1479</b></font> <font color="#26A269"><b>    2.701</b></font>   1479.4   <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0  
+             /data/volbenchtest1 <font color="#A2734C"><b>    1466</b></font> <font color="#26A269"><b>    2.726</b></font>   1466.2   <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0  
+             /data/volbenchtest1 <font color="#A2734C"><b>    1465</b></font> <font color="#26A269"><b>    2.727</b></font>   1465.5   <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0  
+  <font color="#12488B"><b>                 TOTAL/Average     5877     2.719   5879.0          0     0.000      0.0</b></font>
+  
+  Testing write seqential ... (size=1GB, increment=1GB, blocksize=1M, qd=4, profile=write)
+                       Test file   R iops  R lat ms   R MB/s     W iops  W lat ms   W MB/s
+             /data/volbenchtest1 <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0   <font color="#A2734C"><b>     249</b></font> <font color="#26A269"><b>   16.036</b></font>    249.4  
+             /data/volbenchtest1 <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0   <font color="#A2734C"><b>     254</b></font> <font color="#26A269"><b>   15.717</b></font>    254.4  
+             /data/volbenchtest1 <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0   <font color="#A2734C"><b>     252</b></font> <font color="#26A269"><b>   15.824</b></font>    252.7  
+             /data/volbenchtest1 <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0   <font color="#A2734C"><b>     255</b></font> <font color="#26A269"><b>   15.674</b></font>    255.1  
+  <font color="#12488B"><b>                 TOTAL/Average        0     0.000      0.0       1010    15.813   1011.7</b></font>
+  
+  Testing read throughput ... (size=4GB, increment=0, blocksize=128k, qd=16, profile=randread)
+                       Test file   R iops  R lat ms   R MB/s     W iops  W lat ms   W MB/s
+             /data/volbenchtest1 <font color="#A2734C"><b>   40327</b></font> <font color="#26A269"><b>    0.396</b></font>   5041.0   <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0  
+  <font color="#12488B"><b>                 TOTAL/Average    40327     0.396   5041.0          0     0.000      0.0</b></font>
+  
+  Testing write throughput ... (size=4GB, increment=0, blocksize=128k, qd=16, profile=randwrite)
+                       Test file   R iops  R lat ms   R MB/s     W iops  W lat ms   W MB/s
+             /data/volbenchtest1 <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0   <font color="#A2734C"><b>    8069</b></font> <font color="#26A269"><b>    1.982</b></font>   1008.8  
+  <font color="#12488B"><b>                 TOTAL/Average        0     0.000      0.0       8069     1.982   1008.8</b></font>
+  
+  Testing read iops ... (size=4GB, increment=0, blocksize=4k, qd=16, profile=randread)
+                       Test file   R iops  R lat ms   R MB/s     W iops  W lat ms   W MB/s
+             /data/volbenchtest1 <font color="#A2734C"><b>  145014</b></font> <font color="#26A269"><b>    0.110</b></font>    566.5   <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0  
+  <font color="#12488B"><b>                 TOTAL/Average   145014     0.110    566.5          0     0.000      0.0</b></font>
+  
+  Testing write iops ... (size=4GB, increment=0, blocksize=4k, qd=16, profile=randwrite)
+                       Test file   R iops  R lat ms   R MB/s     W iops  W lat ms   W MB/s
+             /data/volbenchtest1 <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0   <font color="#A2734C"><b>  109599</b></font> <font color="#26A269"><b>    0.145</b></font>    428.1  
+  <font color="#12488B"><b>                 TOTAL/Average        0     0.000      0.0     109599     0.145    428.1</b></font>
+  
+  Testing read latency ... (size=4GB, increment=0, blocksize=4k, qd=4, profile=randread)
+                       Test file   R iops  R lat ms   R MB/s     W iops  W lat ms   W MB/s
+             /data/volbenchtest1 <font color="#A2734C"><b>   71561</b></font> <font color="#26A269"><b>    0.055</b></font>    279.5   <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0  
+  <font color="#12488B"><b>                 TOTAL/Average    71561     0.055    279.5          0     0.000      0.0</b></font>
+  
+  Testing write latency ... (size=4GB, increment=0, blocksize=4k, qd=4, profile=randwrite)
+                       Test file   R iops  R lat ms   R MB/s     W iops  W lat ms   W MB/s
+             /data/volbenchtest1 <font color="#A2734C"><b>       0</b></font> <font color="#26A269"><b>    0.000</b></font>      0.0   <font color="#A2734C"><b>   59123</b></font> <font color="#26A269"><b>    0.067</b></font>    230.9  
+  <font color="#12488B"><b>                 TOTAL/Average        0     0.000      0.0      59123     0.067    230.9</b></font>
+  
+  Testing mixed iops ... (size=4GB, increment=0, blocksize=4k, qd=16, profile=randrw)
+                       Test file   R iops  R lat ms   R MB/s     W iops  W lat ms   W MB/s
+             /data/volbenchtest1 <font color="#A2734C"><b>   55250</b></font> <font color="#26A269"><b>    0.140</b></font>    215.8   <font color="#A2734C"><b>   55225</b></font> <font color="#26A269"><b>    0.149</b></font>    215.7  
+  <font color="#12488B"><b>                 TOTAL/Average    55250     0.140    215.8      55225     0.149    215.7</b></font>
+  
+  
+        VolBench Summary       Reads          Writes     
+  ---------------------------------------------------------
+          I/O operations:     145014 iops     109599 iops
+               Mixed I/O:      55250 iops      55225 iops
+                 Latency:      0.055 ms        0.067 ms  
+       Random throughput:     5041.0 MB/s     1008.8 MB/s
+   Sequential throughput:     5879.0 MB/s     1011.7 MB/s
+  
+  </pre>
+</html>
