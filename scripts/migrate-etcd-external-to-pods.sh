@@ -36,6 +36,9 @@ if kubectl -n $STOS_NS get secret storageos-etcd-secret &> /dev/null; then
 elif kubectl -n $STOS_NS get secret etcd-client-tls &> /dev/null; then
     SECRET=etcd-client-tls
     backup_secret $SECRET
+else
+    echo "The secrets storageos-etcd-secret or etcd-client-tls couldn't be found in the $STOS_NS namespace."
+    exit 1
 fi
 
 # Deploy etcd in k8s
