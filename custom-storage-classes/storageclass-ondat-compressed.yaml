@@ -1,0 +1,11 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ondat-compressed
+provisioner: csi.storageos.com
+allowVolumeExpansion: true
+parameters:
+  storageos.com/nocompress: "false"                     # Enable compression of data-at-rest and data-in-transit.
+  csi.storage.k8s.io/fstype: ext4
+  csi.storage.k8s.io/secret-name: storageos-api
+  csi.storage.k8s.io/secret-namespace: storageos
