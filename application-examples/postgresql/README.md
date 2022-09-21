@@ -4,7 +4,7 @@ This example shows an example of how to deploy PostgreSQL Server on Kubernetes w
 PostgreSQL data being written to a StorageOS persistent volume. The files create a
 stateful set that can be used *AFTER* a StorageOS cluster has been created. For
 more information on how to install a StorageOS cluster please see
-[the StorageOS documentation](https://docs.storageos.com/docs/introduction/quickstart)
+[the StorageOS documentation](https://https://docs.ondat.io/docs/install/)
 for more information.
 
 ## Deploy
