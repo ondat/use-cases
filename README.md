@@ -1,6 +1,5 @@
 # Ondat Use Cases
 
-=======
 - [Ondat Use Cases](#ondat-use-cases)
   - [Overview](#overview)
   - [Use Cases](#use-cases)
