@@ -1,10 +1,12 @@
 # Ondat Use Cases
 
+=======
 - [Ondat Use Cases](#ondat-use-cases)
   - [Overview](#overview)
   - [Use Cases](#use-cases)
     - [Linux-IO (LIO) Init Container](#linux-io-lio-init-container)
     - [FIO Container](#fio-container)
+    - [FIO Raw Container](#fio-raw-container)
     - [Scripts](#scripts)
     - [Custom Ondat Storage Classes](#custom-ondat-storage-classes)
   - [Contributing](#contributing)
@@ -24,7 +26,11 @@ This project repository aims to provide examples, tests, scripts and manifests o
 
 ### FIO Container
  
- - This is a documentation on how to deploy a [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/)  which will run the `volbench` test script - which is a wrapper around the [Flexible I/O (FIO) CLI utility](https://fio.readthedocs.io/en/latest/fio_doc.html) for performance testing.
+ - This is documentation on how to deploy a [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/) which will run the `volbench` test script - which is a wrapper around the [Flexible I/O (FIO) CLI utility](https://fio.readthedocs.io/en/latest/fio_doc.html) for performance testing.
+
+### FIO Raw Container
+
+ - This is documentation on how to deploy a [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/)  that will run which will run the [Flexible I/O (FIO) CLI utility](https://fio.readthedocs.io/en/latest/fio_doc.html) with a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/).
 
 ### Scripts
 
@@ -36,15 +42,15 @@ This project repository aims to provide examples, tests, scripts and manifests o
 
 ## Contributing
 
--   Contribution guidelines for this project can be found in the  [Contributing](./CONTRIBUTING.md)  document.
+- Contribution guidelines for this project can be found in the  [Contributing](./CONTRIBUTING.md)  document.
 
 ## License
 
--   Licensed under the  [Apache License, Version 2.0](./LICENSE).
+- Licensed under the  [Apache License, Version 2.0](./LICENSE).
 
 ## Code of Conduct
 
--  For more information on the project's CoC, review the [Code of Conduct](./CODE_OF_CONDUCT.md) document.
+- For more information on the project's CoC, review the [Code of Conduct](./CODE_OF_CONDUCT.md) document.
 
 ## Security 
 
