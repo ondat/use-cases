@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-tap-custom
+  labels:
+    storageos.com/topology-aware: "true"         # Enable Topology-Aware Placement.
+    storageos.com/topology-key: custom-zone      # Ensure that the topology failure domain node label is defined.
+    storageos.com/failure-mode: soft             # Enable "soft" failure mode.
+    storageos.com/replicas: "1"
+spec:
+  storageClassName: storageos
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
