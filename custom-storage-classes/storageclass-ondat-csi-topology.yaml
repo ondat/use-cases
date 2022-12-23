@@ -1,0 +1,51 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ondat-allowed-topology-zone-A
+provisioner: csi.storageos.com
+allowVolumeExpansion: true
+parameters:
+  csi.storage.k8s.io/fstype: ext4
+  storageos.com/replicas: "1"
+  csi.storage.k8s.io/secret-name: storageos-api
+  csi.storage.k8s.io/secret-namespace: storageos
+allowedTopologies:
+- matchLabelExpressions:
+  - key: zone
+    values:
+    - A
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ondat-allowed-topology-zone-B
+provisioner: csi.storageos.com
+allowVolumeExpansion: true
+parameters:
+  csi.storage.k8s.io/fstype: ext4
+  storageos.com/replicas: "1"
+  csi.storage.k8s.io/secret-name: storageos-api
+  csi.storage.k8s.io/secret-namespace: storageos
+allowedTopologies:
+- matchLabelExpressions:
+  - key: zone
+    values:
+    - B
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ondat-allowed-topology-zone-AB
+provisioner: csi.storageos.com
+allowVolumeExpansion: true
+parameters:
+  csi.storage.k8s.io/fstype: ext4
+  storageos.com/replicas: "1"
+  csi.storage.k8s.io/secret-name: storageos-api
+  csi.storage.k8s.io/secret-namespace: storageos
+allowedTopologies:
+- matchLabelExpressions:
+  - key: zone
+    values:
+    - A
+    - B

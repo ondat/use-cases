@@ -1,0 +1,20 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ondat
+parameters:
+  csi.storage.k8s.io/fstype: ext4
+  csi.storage.k8s.io/secret-name: storageos-api
+  csi.storage.k8s.io/secret-namespace: storageos
+  storageos.com/replicas: "1"                           # Create 2 copies of data, Primary + synch Replica
+  # storageos.com/failure-mode: "soft"                  # Failure mode to "soft" so one replica can fail after 90s timeout
+  # storageos.com/topology-aware: "true"                # Enable TAP (default looks for "topology.kubernetes.io/zone=" on nodes)
+  # storageos.com/encryption: "true"                    # Enable encryption per volume
+  # storageos.com/spot-instances: "stable"              # Placement based on Spot instances
+  # storageos.com/compression: "true"                   # Enable compression
+provisioner: csi.storageos.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+
+

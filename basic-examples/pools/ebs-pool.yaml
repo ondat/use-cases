@@ -1,0 +1,22 @@
+apiVersion: api.storageos.com/v1
+kind: Pool
+metadata:
+  name: "provisioned-iops-pool"
+  namespace: storageos
+spec:
+  nodeDriveMap:
+    ip-192-168-74-109.eu-west-2.compute.internal:
+    - "/var/lib/storageos/ebs1"
+    - "/var/lib/storageos/ebs2"
+    ip-192-168-2-77.eu-west-2.compute.internal:
+    - "/var/lib/storageos/ebs1"
+    ip-192-168-62-215.eu-west-2.compute.internal:
+    - "/var/lib/storageos/ebs1"
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true
+  parameters:
+    csi.storage.k8s.io/fstype: ext4
+    storageos.com/replicas: "1"
+
+
+

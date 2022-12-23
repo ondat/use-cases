@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-basic
+  name: pvc-provisioned-iops-ebs-backend
 spec:
-  storageClassName: storageos
+  storageClassName: storageos-storageos-provisioned-iops-pool
   accessModes:
     - ReadWriteOnce
   resources:

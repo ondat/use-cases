@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: placed-zone-A
+  labels:
+    storageos.com/replicas: "1"
+    storageos.com/fixed-topology: "true"
+spec:
+  storageClassName: ondat-allowed-topology-zone-A
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: placed-zone-B
+  labels:
+    storageos.com/replicas: "1"
+    storageos.com/fixed-topology: "true"
+spec:
+  storageClassName: ondat-allowed-topology-zone-B
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+      
+
+
