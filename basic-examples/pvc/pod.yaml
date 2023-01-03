@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-basic
+spec:
+  containers:
+    - name: debian
+      image: debian:11-slim
+      command: ["/bin/sleep"]
+      args: [ "infinity" ]
+      volumeMounts:
+        - mountPath: /mnt
+          name: v1
+  volumes:
+    - name: v1
+      persistentVolumeClaim:
+        claimName: pvc-replicated

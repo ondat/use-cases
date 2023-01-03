@@ -8,7 +8,7 @@ metadata:
     storageos.com/failure-mode: soft             # Enable "soft" failure mode.
     storageos.com/replicas: "1"
 spec:
-  storageClassName: storageos
+  storageClassName: storageos-replciated
   accessModes:
     - ReadWriteOnce
   resources:

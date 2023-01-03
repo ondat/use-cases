@@ -1,0 +1,18 @@
+apiVersion: api.storageos.com/v1
+kind: Pool
+metadata:
+  name: "nvme-pool"
+  namespace: storageos
+spec:
+  nodeDriveMap:
+    worker-1:
+    - "/var/lib/storageos/nvme1"
+    worker-2:
+    - "/var/lib/storageos/nvme1"
+    worker-3:
+    - "/var/lib/storageos/nvme1"
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true
+  parameters:
+    csi.storage.k8s.io/fstype: ext4
+    storageos.com/replicas: "1"

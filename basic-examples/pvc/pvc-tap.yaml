@@ -1,13 +1,14 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-rwx
+  name: pvc-topology-aware-placement
   labels:
+      storageos.com/topology-aware: "true"
       storageos.com/replicas: "1"
 spec:
-  storageClassName: storageos
+  storageClassName: storageos-replicated
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 5Gi
